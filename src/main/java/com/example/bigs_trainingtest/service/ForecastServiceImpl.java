@@ -57,6 +57,7 @@ public class ForecastServiceImpl implements ForecastService {
     public ResponseEntity<List<ForecastResponseDto>> getForecast() {
         List<ForecastResponseDto> forecastList = forecastRepository.findAll().stream().map(ForecastResponseDto::new).toList();
         if (forecastList.isEmpty()) {
+            // HTTP 상태 코드 204를 반환
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return ResponseEntity.ok(forecastList);
